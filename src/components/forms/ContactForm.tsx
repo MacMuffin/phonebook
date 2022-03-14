@@ -1,28 +1,13 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { Formik, Form, FormikHelpers, FormikProps } from "formik";
-import { object, string } from "yup";
 import { FormikField } from "./FormikField";
+import { contactFormValidationSchema } from "./utils/validations";
 
 type ContactFormFields = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
 };
-
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const validationSchema = object({
-  firstName: string()
-    .max(15, "First name must be 15 characters or less")
-    .required("First name is required"),
-  lastName: string()
-    .max(20, "Last name must be 20 characters or less")
-    .required("Last name is required"),
-  phoneNumber: string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("Phone number is required"),
-});
 
 const defaultInitialValues: ContactFormFields = {
   firstName: "",
@@ -55,12 +40,11 @@ const ContactForm = ({
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      validationSchema={contactFormValidationSchema}
       onSubmit={handleSubmit}
       enableReinitialize
     >
       {(props: FormikProps<ContactFormFields>) => {
-        console.log("formikProps", props);
         return (
           <Form>
             <FormContainer>
