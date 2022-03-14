@@ -1,23 +1,18 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { Formik, Form, FormikHelpers, FormikProps } from "formik";
+import { Contact } from "../../types/Contact";
 import { FormikField } from "./FormikField";
 import { contactFormValidationSchema } from "./utils/validations";
 
-type ContactFormFields = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-};
-
-const defaultInitialValues: ContactFormFields = {
+const defaultInitialValues: Contact = {
   firstName: "",
   lastName: "",
   phoneNumber: "",
 };
 
 type ContactFormProps = {
-  initialValues?: ContactFormFields;
-  onSubmit: (values: ContactFormFields) => void;
+  initialValues?: Contact;
+  onSubmit: (values: Contact) => void;
   FormContainer?: React.ComponentType;
 };
 
@@ -26,10 +21,7 @@ const ContactForm = ({
   initialValues = defaultInitialValues,
   FormContainer = HStack,
 }: ContactFormProps) => {
-  const handleSubmit = (
-    values: ContactFormFields,
-    actions: FormikHelpers<ContactFormFields>
-  ) => {
+  const handleSubmit = (values: Contact, actions: FormikHelpers<Contact>) => {
     setTimeout(() => {
       onSubmit(values);
       actions.setSubmitting(false);
@@ -44,7 +36,7 @@ const ContactForm = ({
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {(props: FormikProps<ContactFormFields>) => {
+      {(props: FormikProps<Contact>) => {
         return (
           <Form>
             <FormContainer>
