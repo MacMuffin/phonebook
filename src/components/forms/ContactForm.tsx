@@ -1,6 +1,5 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { Formik, Form, FormikHelpers, FormikProps } from "formik";
-import { JsxElement } from "typescript";
 import { object, string } from "yup";
 import { FormikField } from "./FormikField";
 
@@ -61,6 +60,7 @@ const ContactForm = ({
       enableReinitialize
     >
       {(props: FormikProps<ContactFormFields>) => {
+        console.log("formikProps", props);
         return (
           <Form>
             <FormContainer>
@@ -72,9 +72,7 @@ const ContactForm = ({
               mt={4}
               colorScheme='teal'
               isLoading={props.isSubmitting}
-              disabled={
-                props.isSubmitting || !props.isValid || !props.initialTouched
-              }
+              disabled={props.isSubmitting || !props.isValid}
               type='submit'
             >
               Submit
