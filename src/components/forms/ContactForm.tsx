@@ -14,14 +14,14 @@ const phoneRegExp =
 
 const validationSchema = object({
   firstName: string()
-    .max(15, "Must be 15 characters or less")
-    .required("Required"),
+    .max(15, "First name must be 15 characters or less")
+    .required("First name is required"),
   lastName: string()
-    .max(20, "Must be 20 characters or less")
-    .required("Required"),
+    .max(20, "Last name must be 20 characters or less")
+    .required("Last name is required"),
   phoneNumber: string()
     .matches(phoneRegExp, "Phone number is not valid")
-    .required("Required"),
+    .required("Phone number is required"),
 });
 
 const defaultInitialValues: ContactFormFields = {

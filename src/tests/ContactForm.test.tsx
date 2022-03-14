@@ -1,8 +1,6 @@
-import { screen, queryByAttribute, waitFor, act } from "@testing-library/react";
+import { screen, waitFor, act } from "@testing-library/react";
 import { ContactForm } from "../components/forms/ContactForm";
-import { render } from "../test-utils";
-
-const getById = queryByAttribute.bind(null, "id");
+import { getById, render } from "../test-utils";
 
 const handleSubmit = jest.fn();
 
@@ -10,6 +8,12 @@ const initialValues = {
   firstName: "John",
   lastName: "Doe",
   phoneNumber: "1234567890",
+};
+
+const initialValuesWithEmptyFirstName = {
+  lastName: "Doe",
+  phoneNumber: "1234567890",
+  firstName: "",
 };
 
 describe("ContactForm", () => {
@@ -53,5 +57,43 @@ describe("ContactForm", () => {
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenCalledWith(initialValues)
     );
+  });
+  it("should show required error on first submitting, when firstName is not provided", async () => {
+    render(
+      <ContactForm
+        initialValues={initialValuesWithEmptyFirstName}
+        onSubmit={handleSubmit}
+      />
+    );
+    const submitButtonElement = screen.getByText(/submit/i);
+    expect(submitButtonElement).toBeInTheDocument();
+    expect(screen.queryByText(/first name is required/i)).toBeNull();
+    await act(async () => {
+      submitButtonElement.click();
+    });
+    expect(screen.getByText(/first name is required/i)).toBeInTheDocument();
+  });
+
+  it("should show maxLength error on first submitting, when firstName is too long", async () => {
+    render(
+      <ContactForm
+        initialValues={{
+          ...initialValuesWithEmptyFirstName,
+          firstName: "dasisteinsehrsehrlangervorname",
+        }}
+        onSubmit={handleSubmit}
+      />
+    );
+    const submitButtonElement = screen.getByText(/submit/i);
+    expect(submitButtonElement).toBeInTheDocument();
+    expect(
+      screen.queryByText(/first name must be 15 characters or less/i)
+    ).toBeNull();
+    await act(async () => {
+      submitButtonElement.click();
+    });
+    expect(
+      screen.getByText(/first name must be 15 characters or less/i)
+    ).toBeInTheDocument();
   });
 });
