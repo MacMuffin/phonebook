@@ -1,5 +1,5 @@
-import { createRequiredContext } from "../tools/RequiredContext";
-import { Contact } from "../types/Contact";
+import { createRequiredContext } from "tools/RequiredContext";
+import { Contact } from "types/Contact";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 

@@ -1,5 +1,5 @@
 import { HStack, Td, Tr } from "@chakra-ui/react";
-import { Contact } from "../../types/Contact";
+import { Contact } from "types/Contact";
 import { DeleteContactButton } from "./actionButtons/DeleteContactButton";
 import { EditContactButton } from "./actionButtons/EditContactButton";
 

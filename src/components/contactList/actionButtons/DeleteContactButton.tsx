@@ -1,7 +1,7 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
-import { usePhonebookContext } from "../../../contexts/PhonebookContext";
-import { Contact } from "../../../types/Contact";
+import { usePhonebookContext } from "contexts/PhonebookContext";
+import { Contact } from "types/Contact";
 
 type DeleteContactButtonProps = {
   contact: Contact;

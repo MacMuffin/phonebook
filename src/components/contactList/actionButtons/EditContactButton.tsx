@@ -13,9 +13,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { usePhonebookContext } from "../../../contexts/PhonebookContext";
-import { Contact } from "../../../types/Contact";
-import { ContactForm } from "../../forms/ContactForm";
+import { usePhonebookContext } from "contexts/PhonebookContext";
+import { Contact } from "types/Contact";
+import { ContactForm } from "components/forms/ContactForm";
 
 type EditContactButtonProps = {
   contact: Contact;

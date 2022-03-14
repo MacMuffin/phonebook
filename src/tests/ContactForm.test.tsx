@@ -1,5 +1,5 @@
 import { screen, waitFor, act } from "@testing-library/react";
-import { ContactForm } from "../components/forms/ContactForm";
+import { ContactForm } from "components/forms/ContactForm";
 import { getById, render } from "../test-utils";
 
 const handleSubmit = jest.fn();

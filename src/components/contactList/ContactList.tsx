@@ -1,4 +1,4 @@
-import { usePhonebookContext } from "../../contexts/PhonebookContext";
+import { usePhonebookContext } from "contexts/PhonebookContext";
 import {
   Table,
   TableCaption,

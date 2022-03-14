@@ -7,8 +7,8 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { ContactList } from "./components/contactList/ContactList";
-import { NewContactForm } from "./components/forms/NewContactForm";
+import { ContactList } from "components/contactList/ContactList";
+import { NewContactForm } from "components/forms/NewContactForm";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
